@@ -1,0 +1,13 @@
+package lk.icbt.OceanView;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class OceanViewApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
