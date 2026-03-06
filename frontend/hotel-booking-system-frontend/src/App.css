@@ -1,0 +1,405 @@
+body {
+    min-height: 100vh;
+    padding-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.card {
+    opacity: 0.98;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation bar definitions */
+.navbar {
+    padding: 0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-nav .nav-link {
+    padding: 1.2em 1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .navbar-nav .nav-item {
+    position: relative;
+}
+
+.navbar .navbar-nav .nav-item::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    background-color: #c94a7e; /* Richer pink */
+    width: 0;
+    margin: 0 auto;
+    height: 3px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.navbar .navbar-nav .nav-item:hover::after {
+    width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #333;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #c94a7e;
+}
+
+.navbar-dark .navbar-brand {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+@media screen and (min-width: 992px) {
+    .navbar {
+        padding: 0;
+    }
+    .navbar .navbar-nav .nav-link {
+        padding: 1.2em 0;
+    }
+    .navbar .navbar-nav .nav-item {
+        margin: 0 1.2em;
+    }
+}
+
+/* Hotel custom color */
+.btn-hotel {
+    background-color: #9e4065;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(201, 74, 126, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-hotel:hover {
+    background-color: #a73868;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 74, 126, 0.4);
+}
+
+.hotel-color {
+    color: #c94a7e;
+}
+
+.room-price {
+    color: #d4a030; /* Richer gold */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.vertical-rule {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.parallax {
+    background-image: url("./assets/images/parall.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    position: relative;
+    margin-top: 50px;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 8);
+}
+
+.parallax {
+    background-image: url("./assets/images/parall.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    position: relative;
+    margin-top: 50px;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff; /* Pure white text */
+    text-shadow:
+            2px 2px 4px rgba(0, 0, 0, 0.5), /* Stronger text shadow */
+            0 0 10px rgba(255, 255, 255, 0.3); /* Optional white glow effect */
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+.parallax-content h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.parallax-content p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+.header {
+    position: relative;
+    height: 180px;
+    background-size: cover;
+    background-image: url("./assets/images/banner2.jpg");
+    background-position: center center;
+}
+
+.header-title {
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.animated {
+    animation-duration: 1.2s;
+}
+
+.animated-texts h1 {
+    animation: fadeInDown 1.2s ease-in-out;
+}
+
+.animated-texts p, h1, h2 {
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        transform: translate3d(0,0,0);
+    }
+
+    40%, 60% {
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        transform: translate3d(0, -15px, 0);
+    }
+
+    90% {
+        transform: translate3d(0,-4px,0);
+    }
+}
+
+.bounceIn {
+    animation-name: bounceIn;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -50%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 50%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Header overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(201, 74, 126, 0.6) 100%);*/
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    width: 80%;
+    text-align: center;
+}
+
+/* The header banner */
+.header-banner {
+    background-image: url("./assets/images/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 80vh;
+    background-attachment: fixed;
+}
+
+.header-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+@media only screen and (max-width: 768px) {
+    .header-banner h1 {
+        font-size: 26px;
+        padding: 0 15px;
+    }
+
+    .header-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .header-banner h1 {
+        font-size: 20px;
+    }
+
+    .header-title {
+        font-size: 2rem;
+    }
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2c2c2c;
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+/* Additional eye-catching elements */
+.section-title {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #c94a7e;
+}
+
+/* Add subtle hover effects to make the site feel more interactive */
+a {
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Improve form elements to match the theme */
+input.form-control, select.form-control, textarea.form-control {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
+    border-color: #c94a7e;
+    box-shadow: 0 0 0 0.2rem rgba(201, 74, 126, 0.25);
+}
+
+/* Add some subtle animations for scroll effects */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar-brand:hover .hotel-color {
+    color: #a94d7b; /* your theme color or a brighter shade */
+}
+
