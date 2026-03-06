@@ -47,7 +47,7 @@ body {
     left: 0;
     right: 0;
     content: '';
-    background-color: #c94a7e; /* Richer pink */
+    background-color: #1d4ed8; /* Primary blue */
     width: 0;
     margin: 0 auto;
     height: 3px;
@@ -63,7 +63,7 @@ body {
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    color: #c94a7e;
+    color: #1d4ed8;
 }
 
 .navbar-dark .navbar-brand {
@@ -87,26 +87,26 @@ body {
 
 /* Hotel custom color */
 .btn-hotel {
-    background-color: #9e4065;
+    background-color: #1d4ed8;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 30px;
     font-weight: 600;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(201, 74, 126, 0.3);
+    box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
     transition: all 0.3s ease;
 }
 
 .btn-hotel:hover {
-    background-color: #a73868;
+    background-color: #1a56c8;
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(201, 74, 126, 0.4);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
 }
 
 .hotel-color {
-    color: #c94a7e;
+    color: #1d4ed8;
 }
 
 .room-price {
@@ -362,7 +362,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: #c94a7e;
+    background: #1d4ed8;
 }
 
 /* Add subtle hover effects to make the site feel more interactive */
@@ -383,8 +383,8 @@ input.form-control, select.form-control, textarea.form-control {
 }
 
 input.form-control:focus, select.form-control:focus, textarea.form-control:focus {
-    border-color: #c94a7e;
-    box-shadow: 0 0 0 0.2rem rgba(201, 74, 126, 0.25);
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.25);
 }
 
 /* Add some subtle animations for scroll effects */
@@ -400,5 +400,5 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
 }
 
 .link-no-style:hover .hotel-color {
-    color: #a94d7b; /* your theme color or a brighter shade */
+    color: #1d4ed8; /* your theme color or a brighter shade */
 }

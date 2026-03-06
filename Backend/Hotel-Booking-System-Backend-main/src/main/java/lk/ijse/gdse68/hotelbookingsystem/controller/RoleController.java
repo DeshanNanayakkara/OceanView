@@ -56,7 +56,7 @@ public class RoleController {
     @PostMapping("/assign-roles-to-user")
     public User assignRolesToUser(
             @RequestParam("userId") Long userId,
-            @RequestParam("userId") Long roleId
+            @RequestParam("roleId") Long roleId
     ){
         return roleService.assignRolesToUser(userId, roleId);
     }

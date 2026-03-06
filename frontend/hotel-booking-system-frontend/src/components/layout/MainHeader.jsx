@@ -5,7 +5,7 @@ const MainHeader = () => {
         <header className={"header-banner"}>
             <div className={"overlay"}>
                 <div className={"animated-texts overlay-content"}>
-                    <h1>Welcome to <span> Mount Hotel</span></h1>
+                    <h1>Welcome to <span> Ocean View Resort</span></h1>
                     <h4>Experience the best</h4>
                 </div>
             </div>
