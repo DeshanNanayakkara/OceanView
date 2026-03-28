@@ -59,7 +59,7 @@ public class BookedRoomController {
     }
 
     @PostMapping("save/booking/{roomId}")
-    public ResponseEntity<?> saveBooking(@PathVariable long roomId, @RequestBody BookedRoom bookingRequest){
+    public ResponseEntity<?> saveBooking(@PathVariable String roomId, @RequestBody BookedRoom bookingRequest){
         try{
             String confirmationCode = bookedRoomService.saveBooking(roomId, bookingRequest);
             return ResponseEntity.ok("Booking is successful. Your confirmation code is "+ confirmationCode);
@@ -69,7 +69,7 @@ public class BookedRoomController {
     }
 
     @DeleteMapping("/delete/booking/{bookingId}")
-    public void cancelBooking(@PathVariable Long bookingId){
+    public void cancelBooking(@PathVariable String bookingId){
         bookedRoomService.cancelBooking(bookingId);
     }
 

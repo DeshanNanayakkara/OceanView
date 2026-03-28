@@ -4,6 +4,9 @@ import {useNavigate, useParams} from "react-router-dom";
 import moment from "moment/moment.js";
 import {Form, FormControl, FormGroup} from "react-bootstrap";
 import BookingSummery from "./BookingSummery.jsx";
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 
 const BookingForm = () => {
     const [isValidated, setIsValidated] = useState(false)
@@ -25,8 +28,17 @@ const BookingForm = () => {
     const [roomInfo, setRoomInfo] = useState({
         photo: "",
         roomType: "",
-        roomPrice: ""
+        roomPrice: "",
+        bookings: []
     })
+
+    const [dateRange, setDateRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    ]);
 
     const {roomId} = useParams()
     const navigate = useNavigate()
@@ -37,17 +49,28 @@ const BookingForm = () => {
         setErrorMessage("")
     }
 
-    const getRoomPriceById = async(roomId) => {
+    const handleDateRangeChange = (item) => {
+        setDateRange([item.selection]);
+        setBooking({
+            ...booking,
+            checkInDate: moment(item.selection.startDate).format("YYYY-MM-DD"),
+            checkOutDate: moment(item.selection.endDate).format("YYYY-MM-DD")
+        });
+        setErrorMessage("");
+    };
+
+    const getRoomDetailsById = async(roomId) => {
         try{
             const response = await getRoomById(roomId)
+            setRoomInfo(response)
             setRoomPrice(response.roomPrice)
         }catch (error){
-            setErrorMessage(`Error while getRoomPriceById: ${error.message}`)
+            setErrorMessage(`Error while fetching room details: ${error.message}`)
         }
     }
 
     useEffect(() => {
-        getRoomPriceById(roomId)
+        getRoomDetailsById(roomId)
     }, [roomId]);
 
     const calculatePayment = () => {
@@ -65,7 +88,46 @@ const BookingForm = () => {
         return totalCount >= 1 && adultCount >= 1
     }
 
+    const getDisabledDates = () => {
+        let disabledDates = [];
+        if (roomInfo.bookings && roomInfo.bookings.length > 0) {
+            roomInfo.bookings.forEach(b => {
+                let start = moment(b.checkInDate);
+                let end = moment(b.checkOutDate);
+                while (start.isBefore(end)) {
+                    disabledDates.push(start.toDate());
+                    start.add(1, 'days');
+                }
+            });
+        }
+        return disabledDates;
+    };
+
     const isCheckoutDateValid = () => {
+        if (!booking.checkInDate || !booking.checkOutDate) {
+            setErrorMessage("Please select a date range on the calendar.")
+            return false
+        }
+
+        const disabled = getDisabledDates();
+        let start = moment(booking.checkInDate);
+        let end = moment(booking.checkOutDate);
+        let hasConflict = false;
+
+        let current = start.clone();
+        while (current.isBefore(end)) {
+            if (disabled.some(d => moment(d).isSame(current, 'day'))) {
+                hasConflict = true;
+                break;
+            }
+            current.add(1, 'days');
+        }
+
+        if (hasConflict) {
+            setErrorMessage("Warning: One or more selected days are already booked. Please choose a different range.")
+            return false
+        }
+
         if (!moment(booking.checkOutDate).isSameOrAfter(moment(booking.checkInDate))){
             setErrorMessage("Check out date must be after check in date")
             return false
@@ -141,49 +203,32 @@ const BookingForm = () => {
                                     </Form.Control.Feedback>
                                 </Form.Group>
 
-                                <fieldset style={{border: "2px"}}>
+                                <fieldset style={{border: "2px", padding: "10px"}}>
                                     <legend>Lodging period</legend>
                                     <div className={"row"}>
-                                        <div className={"col-md-6"}>
-                                            <Form.Label htmlFor={"checkInDate"}>
-                                                Check in Date :
-                                            </Form.Label>
-                                            <FormControl
-                                                required
-                                                type={"date"}
-                                                id={"checkInDate"}
-                                                name={"checkInDate"}
-                                                value={booking.checkInDate || ""}
-                                                placeholder={"Check in Date"}
-                                                onChange={handleInputChange}
+                                        <div className={"col-12 mb-3 d-flex justify-content-center flex-column align-items-center"}>
+                                            <input type="hidden" required value={booking.checkInDate} />
+                                            <input type="hidden" required value={booking.checkOutDate} />
+                                            <DateRange
+                                                editableDateInputs={true}
+                                                onChange={handleDateRangeChange}
+                                                moveRangeOnFirstSelection={false}
+                                                ranges={dateRange}
+                                                minDate={new Date()}
+                                                disabledDates={getDisabledDates()}
+                                                className="w-100 border rounded shadow-sm overflow-hidden"
                                             />
-                                            <Form.Control.Feedback>
-                                                Please enter check in date
-                                            </Form.Control.Feedback>
+                                            {(!booking.checkInDate || !booking.checkOutDate) && (
+                                                <div className="text-secondary mt-2 small">
+                                                    Please select both a check-in and check-out date from the calendar.
+                                                </div>
+                                            )}
+                                            {errorMessage &&
+                                                <p className={"error-message text-danger mt-2 fw-bold"}>
+                                                    {errorMessage}
+                                                </p>
+                                            }
                                         </div>
-
-                                        <div className={"col-md-6"}>
-                                            <Form.Label htmlFor={"checkOutDate"}>
-                                                Check out Date :
-                                            </Form.Label>
-                                            <FormControl
-                                                required
-                                                type={"date"}
-                                                id={"checkOutDate"}
-                                                name={"checkOutDate"}
-                                                value={booking.checkOutDate || ""}
-                                                placeholder={"Check out Date"}
-                                                onChange={handleInputChange}
-                                            />
-                                            <Form.Control.Feedback>
-                                                Please enter check out date
-                                            </Form.Control.Feedback>
-                                        </div>
-                                        {errorMessage &&
-                                            <p className={"error-message text-danger"}>
-                                                {errorMessage}
-                                            </p>
-                                        }
                                     </div>
                                 </fieldset>
 

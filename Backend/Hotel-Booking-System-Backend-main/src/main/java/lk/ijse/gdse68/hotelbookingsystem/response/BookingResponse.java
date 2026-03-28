@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class BookingResponse {
-    private Long id;
+    private String id;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private String guestFullName;
@@ -21,7 +21,7 @@ public class BookingResponse {
     private String bookingConfirmationCode;
     private RoomResponse roomResponse;
 
-    public BookingResponse(Long bookingId, LocalDate checkOutDate, LocalDate checkInDate, String bookingConfirmationCode) {
+    public BookingResponse(String bookingId, LocalDate checkOutDate, LocalDate checkInDate, String bookingConfirmationCode) {
         this.id = bookingId;
         this.checkOutDate = checkOutDate;
         this.checkInDate = checkInDate;

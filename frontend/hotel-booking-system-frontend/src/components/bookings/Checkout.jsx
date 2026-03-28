@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getRoomById} from "../utils/ApiFunctions.js";
 import {useParams} from "react-router-dom";
-import {FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt} from "react-icons/fa";
+import {FaCheckCircle} from "react-icons/fa";
 import BookingForm from "./bookingForm.jsx";
 import RoomCarousel from "../common/RoomCarousel.jsx";
 
@@ -53,35 +53,17 @@ const Checkout = () => {
                                        <tr>
                                            <th>Room Services: </th>
                                              <td>
-                                                 <ul className={"list-unstyled"}>
-                                                     <li>
-                                                         <FaWifi/>
-                                                         WiFi
-                                                     </li>
-                                                     <li>
-                                                         <FaTv/>
-                                                         Netflix Premium
-                                                     </li>
-                                                     <li>
-                                                         <FaUtensils/>
-                                                         Breakfast
-                                                     </li>
-                                                     <li>
-                                                         <FaWineGlassAlt/>
-                                                         Mini bar refreshment
-                                                     </li>
-                                                     <li>
-                                                         <FaCar/>
-                                                         Car Service
-                                                     </li>
-                                                     <li>
-                                                         <FaParking/>
-                                                         Parking Space
-                                                     </li>
-                                                     <li>
-                                                         <FaTshirt/>
-                                                         Laundry Service
-                                                     </li>
+                                                 <ul className={"list-unstyled d-flex flex-wrap gap-2"}>
+                                                     {roomInfo.amenities && roomInfo.amenities.length > 0 ? (
+                                                         roomInfo.amenities.map((amenity, index) => (
+                                                             <li key={index} className="badge bg-info text-dark p-2 d-flex align-items-center">
+                                                                 <FaCheckCircle className="me-2 text-success" />
+                                                                 {amenity}
+                                                             </li>
+                                                         ))
+                                                     ) : (
+                                                         <li className="text-muted">No specific amenities listed</li>
+                                                     )}
                                                  </ul>
                                              </td>
                                        </tr>

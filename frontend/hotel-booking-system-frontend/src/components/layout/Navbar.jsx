@@ -24,7 +24,7 @@ const Navbar = () => {
     console.log("userRole:", userRole);
 
     return(
-        <nav className={"navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top"}>
+        <nav className={"navbar navbar-expand-lg px-5 shadow sticky-top bg-white"}>
             <div className={"container-fluid"}>
                 <Link to={"/"} className={"navbar-brand"}>
                     <span className={"hotel-color"}> Ocean View Resort </span>

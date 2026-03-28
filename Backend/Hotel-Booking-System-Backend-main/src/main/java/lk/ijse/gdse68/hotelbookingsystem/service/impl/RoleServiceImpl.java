@@ -37,7 +37,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void deleteRole(Long id) {
+    public void deleteRole(String id) {
         this.removeAllUsersFromRoles(id);
         roleRepository.deleteById(id);
     }
@@ -48,7 +48,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public User removeUserFromRole(Long userId, Long roleId) {
+    public User removeUserFromRole(String userId, String roleId) {
         Optional<User> user = userRepository.findById(userId);
         Optional<Roles> role = roleRepository.findById(roleId);
         if (role.isPresent() && role.get().getUsers().contains(user.get())) {
@@ -60,7 +60,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public User assignRolesToUser(Long userId, Long roleId) {
+    public User assignRolesToUser(String userId, String roleId) {
         Optional<User> user = userRepository.findById(userId);
         Optional<Roles> role = roleRepository.findById(roleId);
         if (user.isPresent() && user.get().getRoles().contains(role.get())){
@@ -75,7 +75,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Roles removeAllUsersFromRoles(Long roleId) {
+    public Roles removeAllUsersFromRoles(String roleId) {
         Optional<Roles> roles = roleRepository.findById(roleId);
         roles.ifPresent(Roles::removeAllUsersFromRoles);
         return roleRepository.save(roles.get());

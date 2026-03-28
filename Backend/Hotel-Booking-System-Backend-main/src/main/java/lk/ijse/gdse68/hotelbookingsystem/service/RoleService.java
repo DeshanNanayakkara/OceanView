@@ -8,9 +8,9 @@ import java.util.List;
 public interface RoleService {
     List<Roles> getRoles();
     Roles createRole(Roles role);
-    void deleteRole(Long id);
+    void deleteRole(String id);
     Roles findByName(String name);
-    User removeUserFromRole(Long userId, Long roleId);
-    User assignRolesToUser(Long userId, Long roleId);
-    Roles removeAllUsersFromRoles(Long roleId);
+    User removeUserFromRole(String userId, String roleId);
+    User assignRolesToUser(String userId, String roleId);
+    Roles removeAllUsersFromRoles(String roleId);
 }

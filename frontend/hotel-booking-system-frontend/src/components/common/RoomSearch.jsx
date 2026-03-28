@@ -81,13 +81,14 @@ const RoomSearch = () => {
 
     return (
         <div>
-            <Container className={"mt-5 mb-5 py-5 shadow"}>
+            <Container className={"mt-5 mb-5 p-5 shadow-lg rounded-4 bg-white"}>
+                <h4 className="text-center mb-4 fw-bold" style={{color: 'var(--primary-color, #0ea5e9)'}}>Find Your Perfect Room</h4>
                 <Form onSubmit={handleSearch}>
-                    <Row className={"justify-content-center"}>
+                    <Row className={"justify-content-center align-items-end"}>
 
-                        <Col xs={12} md={3}>
+                        <Col xs={12} md={3} className="mb-3 mb-md-0">
                             <Form.Group controlId={'checkInDate'}>
-                                <Form.Label>
+                                <Form.Label className="fw-bold text-secondary small text-uppercase">
                                     Check-in date
                                 </Form.Label>
                                 <Form.Control
@@ -100,9 +101,9 @@ const RoomSearch = () => {
                             </Form.Group>
                         </Col>
 
-                        <Col xs={12} md={3}>
+                        <Col xs={12} md={3} className="mb-3 mb-md-0">
                             <Form.Group controlId={'checkOutDate'}>
-                                <Form.Label>
+                                <Form.Label className="fw-bold text-secondary small text-uppercase">
                                     Check-out date
                                 </Form.Label>
                                 <Form.Control
@@ -115,17 +116,19 @@ const RoomSearch = () => {
                             </Form.Group>
                         </Col>
 
-                        <Col xs={12} md={3}>
-                            <Form.Group controlId={'checkOutDate'}>
-                                <Form.Label>
+                        <Col xs={12} md={4} className="mb-3 mb-md-0">
+                            <Form.Group controlId={'roomType'}>
+                                <Form.Label className="fw-bold text-secondary small text-uppercase">
                                     Room Type
                                 </Form.Label>
-                                <div className={'d-flex'}>
-                                    <RoomTypeSelector
-                                        handleRoomInputChange={handleInputChange}
-                                        newRoom={searchQuery}
-                                    />
-                                    <Button variant={"secondary"} type={"submit"}>
+                                <div className={'d-flex gap-2'}>
+                                    <div className="flex-grow-1">
+                                        <RoomTypeSelector
+                                            handleRoomInputChange={handleInputChange}
+                                            newRoom={searchQuery}
+                                        />
+                                    </div>
+                                    <Button className={"btn btn-hotel px-4"} type={"submit"}>
                                         Search
                                     </Button>
                                 </div>

@@ -1,6 +1,5 @@
 package lk.ijse.gdse68.hotelbookingsystem.service.impl;
 
-import jakarta.transaction.Transactional;
 import lk.ijse.gdse68.hotelbookingsystem.model.Roles;
 import lk.ijse.gdse68.hotelbookingsystem.model.User;
 import lk.ijse.gdse68.hotelbookingsystem.repository.RoleRepository;
@@ -40,7 +39,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Transactional
     @Override
     public void deleteUser(String email) {
         User user = userRepository.findByEmail(email)

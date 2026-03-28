@@ -37,26 +37,26 @@ public class RoleController {
     }
 
     @DeleteMapping("/delete/{roleId}")
-    public void deleteRole(@PathVariable("roleId") Long roleId){
+    public void deleteRole(@PathVariable("roleId") String roleId){
         roleService.deleteRole(roleId);
     }
 
     @PostMapping("/remove-all-users-from-role/{id}")
-    public Roles removeAllUsersFromRole(@PathVariable("id") Long id){
+    public Roles removeAllUsersFromRole(@PathVariable("id") String id){
         return roleService.removeAllUsersFromRoles(id);
     }
 
     @PostMapping("/remove-user-from-role")
     public User removeUserFromRole(
-            @RequestParam("userId") Long userId,
-            @RequestParam("roleId") Long roleId){
+            @RequestParam("userId") String userId,
+            @RequestParam("roleId") String roleId){
         return roleService.removeUserFromRole(userId, roleId);
     }
 
     @PostMapping("/assign-roles-to-user")
     public User assignRolesToUser(
-            @RequestParam("userId") Long userId,
-            @RequestParam("roleId") Long roleId
+            @RequestParam("userId") String userId,
+            @RequestParam("roleId") String roleId
     ){
         return roleService.assignRolesToUser(userId, roleId);
     }

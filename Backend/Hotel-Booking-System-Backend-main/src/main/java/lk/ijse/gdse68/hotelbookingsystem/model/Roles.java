@@ -1,27 +1,28 @@
 package lk.ijse.gdse68.hotelbookingsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-@Entity
+@Document(collection = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Roles {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "roles")
+    @DBRef(lazy = true)
     private Collection<User> users = new HashSet<>();
 
     public Roles(String name) {

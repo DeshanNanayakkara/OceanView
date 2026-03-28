@@ -1,33 +1,32 @@
 package lk.ijse.gdse68.hotelbookingsystem.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-@Entity
+@Document(collection = "rooms")
 @Setter
 @Getter
 @AllArgsConstructor
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String roomType;
     private BigDecimal roomPrice;
     private boolean isBooked = false;
-    @Lob
-    private Blob photo;
+    private String photo;
+    private List<String> amenities;
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @DBRef
     private List<BookedRoom> bookings;
 
     public Room(){

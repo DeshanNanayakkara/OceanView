@@ -7,7 +7,8 @@ const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
         photo : null,
         roomType : "",
-        roomPrice : ""
+        roomPrice : "",
+        amenities: []
     })
     const [imagePreview, setImagePreview] = useState("")
     const [successMessage, setSuccessMessage] = useState("")
@@ -26,6 +27,26 @@ const AddRoom = () => {
         setNewRoom({...newRoom, [name]: value})
     }
 
+    const handleAmenityChange = (e) => {
+        const { value, checked } = e.target;
+        const currentAmenities = [...newRoom.amenities];
+        
+        if (checked) {
+            currentAmenities.push(value);
+        } else {
+            const index = currentAmenities.indexOf(value);
+            if (index > -1) {
+                currentAmenities.splice(index, 1);
+            }
+        }
+        setNewRoom({ ...newRoom, amenities: currentAmenities });
+    }
+
+    const availableAmenities = [
+        "WiFi", "Netflix Premium", "Breakfast", "Mini bar refreshment", 
+        "Car Service", "Parking Space", "Laundry Service", "AC", "Balcony"
+    ];
+
     const handleImageChange = (e) => {
         const selectedImage = e.target.files[0]
         setNewRoom({...newRoom, photo: selectedImage})
@@ -35,14 +56,15 @@ const AddRoom = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-            const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice)
+            const success = await addRoom(newRoom.photo, newRoom.roomType, newRoom.roomPrice, newRoom.amenities)
             if(success !== undefined){
                 setSuccessMessage("Room added successfully !")
 
                 setNewRoom({
                     photo : null,
                     roomType : "",
-                    roomPrice : ""
+                    roomPrice : "",
+                    amenities: []
                 })
                 setImagePreview("")
                 setErrorMessage("")
@@ -97,6 +119,27 @@ const AddRoom = () => {
                                     value={newRoom.roomPrice}
                                     onChange={handleRoomInputChange}
                                 />
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label d-block">Room Amenities</label>
+                                <div className="d-flex flex-wrap gap-3 p-3 border rounded shadow-sm bg-light">
+                                    {availableAmenities.map((amenity, index) => (
+                                        <div key={index} className="form-check">
+                                            <input
+                                                className="form-check-input"
+                                                type="checkbox"
+                                                value={amenity}
+                                                id={`amenity-${index}`}
+                                                onChange={handleAmenityChange}
+                                                checked={newRoom.amenities.includes(amenity)}
+                                            />
+                                            <label className="form-check-label" htmlFor={`amenity-${index}`}>
+                                                {amenity}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             <div className="mb-3">

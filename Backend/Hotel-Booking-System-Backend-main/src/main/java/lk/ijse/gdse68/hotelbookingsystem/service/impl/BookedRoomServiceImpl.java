@@ -23,7 +23,7 @@ public class BookedRoomServiceImpl implements BookedRoomService {
     private final RoomService roomService;
 
     @Override
-    public List<BookedRoom> getAllBookingsByRoomId(Long id) {
+    public List<BookedRoom> getAllBookingsByRoomId(String id) {
         return bookedRoomRepository.findByRoomId(id);
     }
 
@@ -39,7 +39,7 @@ public class BookedRoomServiceImpl implements BookedRoomService {
     }
 
     @Override
-    public String saveBooking(long roomId, BookedRoom bookingRequest) {
+    public String saveBooking(String roomId, BookedRoom bookingRequest) {
         if (bookingRequest.getCheckOutDate().isBefore(bookingRequest.getCheckInDate())){
             throw new InvalidBookingRequestException("Check out date should be after check in date");
         }
@@ -56,7 +56,7 @@ public class BookedRoomServiceImpl implements BookedRoomService {
     }
 
     @Override
-    public void cancelBooking(Long bookingId) {
+    public void cancelBooking(String bookingId) {
         bookedRoomRepository.deleteById(bookingId);
     }
 
